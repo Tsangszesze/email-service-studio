@@ -4,6 +4,8 @@
   "description": "This is a codebase for creating a email server.",
   "main": "src/server.ts",
   "scripts": {
+    "start": "nodemon src/server.ts",
+    "lint": "npx prettier src/. --write --check && npx eslint src/.",
     "test": "jasmine --slient",
     "build": "npx tsc && node dist/."
   },
@@ -30,6 +32,7 @@
     "globals": "^15.1.0",
     "nodemon": "^3.1.0",
     "prettier": "^3.2.5",
+    "ts-node": "^10.9.2",
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.8.0"
   }

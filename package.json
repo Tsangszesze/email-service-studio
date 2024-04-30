@@ -6,8 +6,9 @@
   "scripts": {
     "start": "nodemon src/server.ts",
     "lint": "npx prettier src/. --write --check && npx eslint src/.",
+    "build": "npx tsc --build --clean && npx tsc",
     "test": "jasmine --slient",
-    "build": "npx tsc && node dist/."
+    "deploy": "vercel"
   },
   "repository": {
     "type": "git",

@@ -1,2 +1,2 @@
-# email_service_studio
-Email.Service.Studio
+# Email.Service.Studio
+This is a codebase for creating a email server.

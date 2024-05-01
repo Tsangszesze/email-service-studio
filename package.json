@@ -4,9 +4,8 @@
   "description": "This is a codebase for creating a email server.",
   "main": "src/server.ts",
   "scripts": {
-    "start": "nodemon src/server.ts",
     "lint": "npx prettier src/. --write --check && npx eslint src/.",
-    "build": "npx tsc --build --clean && npx tsc",
+    "build": "npm run lint && npx tsc --build --clean && npx tsc && node dist/server.js",
     "test": "jasmine --slient",
     "deploy": "vercel"
   },
@@ -21,6 +20,8 @@
   },
   "homepage": "https://github.com/Tsangszesze/email-service-studio#readme",
   "dependencies": {
+    "@types/ejs": "^3.1.5",
+    "@types/nodemailer": "^6.4.14",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "nodemailer": "^6.9.13"

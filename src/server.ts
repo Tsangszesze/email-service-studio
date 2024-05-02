@@ -1,4 +1,5 @@
-import dotenv from "dotenv";
+// import dotenv from "dotenv";
+import cors from "cors";
 import ejs from "ejs";
 import express from "express";
 import fs from "fs";
@@ -10,9 +11,11 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+app.use(cors());
+app.use(express.static("public"))
 
 // -- Uncomment to init environment variables for local development --
-dotenv.config();
+// dotenv.config();
 // -- Uncomment to init environment variables for local development --
 
 // Init nodemailer
@@ -65,8 +68,8 @@ app.get("/", (req: express.Request<OTPRequst>, res: express.Response) => {
 });
 
 // -- Uncomment to start localhost server for local development and testing --
-const port = 8000;
-app.listen(port, () => {
-  console.log(`Server running on localhost: ${port}`);
-});
+// const port = 8000;
+// app.listen(port, () => {
+//   console.log(`Server running on localhost: ${port}`);
+// });
 // -- Uncomment to start localhost server for local development and testing --

@@ -10,6 +10,7 @@
     "local-build": "npm i && npx tsc --build --clean && npm run build:server && npm run build:client",
     "local-test": "jasmine --slient",
     "local-start": "node dist/server.js",
+    "start": "server.js",
     "build": "rm -rf dist && rm -rf app.zip && npm run build:server && npm run build:client",
     "zip": "cd dist && zip -r -D ../app.zip *"
   },
@@ -24,9 +25,6 @@
   },
   "homepage": "https://github.com/Tsangszesze/email-service-studio#readme",
   "dependencies": {
-    "@types/cors": "^2.8.17",
-    "@types/ejs": "^3.1.5",
-    "@types/nodemailer": "^6.4.14",
     "cors": "^2.8.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
@@ -41,6 +39,9 @@
     "prettier": "^3.2.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5",
-    "typescript-eslint": "^7.8.0"
+    "typescript-eslint": "^7.8.0",
+    "@types/cors": "^2.8.17",
+    "@types/ejs": "^3.1.5",
+    "@types/nodemailer": "^6.4.14"
   }
 }

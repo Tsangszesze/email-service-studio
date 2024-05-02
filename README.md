@@ -7,10 +7,10 @@ Transpile and build the app for local testing\
 Test with Jasmine\
 ```npm run local-test```\
 Test with localhost server\
-```npm run local-start```\
+```npm run local-start```
 
 ## Deployment
 Transpile and build the app for deployment\
 ```npm run build```\
 (Optional) Zip the built app for deployment\
-```npm run zip```\
+```npm run zip```

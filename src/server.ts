@@ -32,7 +32,6 @@ type OTPRequst = {
   web: string;
 };
 
-// Routes
 app.post(
   "/otp",
   async (req: express.Request<OTPRequst>, res: express.Response) => {

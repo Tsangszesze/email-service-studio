@@ -1,8 +1,9 @@
-// import dotenv from "dotenv";
+import dotenv from "dotenv";
 import ejs from "ejs";
 import express from "express";
 import fs from "fs";
 import nodemailer from "nodemailer";
+import path from "path";
 
 // Create Server
 const app = express();
@@ -11,7 +12,7 @@ const app = express();
 app.use(express.json());
 
 // -- Uncomment to init environment variables for local development --
-// dotenv.config();
+dotenv.config();
 // -- Uncomment to init environment variables for local development --
 
 // Init nodemailer
@@ -37,7 +38,7 @@ app.post(
   async (req: express.Request<OTPRequst>, res: express.Response) => {
     const { to_email, from_email, sender, bcc, web } = req.body;
     try {
-      const template = fs.readFileSync("template.html", "utf-8");
+      const template = fs.readFileSync("public/template.html", "utf-8");
       const renderedTemplate = ejs.render(template, { variableName: web });
       const number = 12123;
       const mailOptions = {
@@ -59,17 +60,13 @@ app.post(
     res.send("Data received successfully");
   },
 );
-app.get(
-  "/", (req: express.Request<OTPRequst>, res: express.Response) => {
-    console.log('Testing')
-    res.send(`Hi ${process.env.TESTVAR}`);
-  },
-);
-
+app.get("/", (req: express.Request<OTPRequst>, res: express.Response) => {
+  res.sendFile(path.join(__dirname + "/client/index.html"));
+});
 
 // -- Uncomment to start localhost server for local development and testing --
-// const port = 8000;
-// app.listen(port, () => {
-//   console.log(`Server running on localhost: ${port}`);
-// });
+const port = 8000;
+app.listen(port, () => {
+  console.log(`Server running on localhost: ${port}`);
+});
 // -- Uncomment to start localhost server for local development and testing --

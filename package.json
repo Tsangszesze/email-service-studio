@@ -5,9 +5,13 @@
   "main": "src/server.ts",
   "scripts": {
     "lint": "npx prettier src/. --write --check && npx eslint src/.",
-    "build": "npm run lint && npx tsc --build --clean && npx tsc && node dist/server.js",
-    "test": "jasmine --slient",
-    "deploy": "vercel"
+    "build:client": "cp -rf client/ dist/client && cp -rf public/ dist/public",
+    "build:server": "npm run lint && npx tsc && cp package.json dist",
+    "local-build": "npm i && npx tsc --build --clean && npm run build:server && npm run build:client",
+    "local-test": "jasmine --slient",
+    "local-start": "node dist/server.js",
+    "build": "rm -rf dist && npm run build:server && npm run build:client",
+    "zip": "npm run build && cd dist && zip -r -D ../app.zip *"
   },
   "repository": {
     "type": "git",
@@ -32,7 +36,6 @@
     "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "globals": "^15.1.0",
-    "nodemon": "^3.1.0",
     "prettier": "^3.2.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5",

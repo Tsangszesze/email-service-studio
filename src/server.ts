@@ -6,10 +6,8 @@ import fs from "fs";
 import nodemailer from "nodemailer";
 import path from "path";
 
-// Create Server
 const app = express();
 
-// Middleware
 app.use(express.json());
 app.use(cors());
 app.use(express.static("public"))
@@ -18,7 +16,6 @@ app.use(express.static("public"))
 // dotenv.config();
 // -- Uncomment to init environment variables for local development --
 
-// Init nodemailer
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {

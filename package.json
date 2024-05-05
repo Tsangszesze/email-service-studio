@@ -8,9 +8,8 @@
     "build:client": "cp -rf client/ dist/client && cp -rf public/ dist/public",
     "build:server": "npm run lint && npx tsc && cp package.json dist",
     "local-build": "npm i && npx tsc --build --clean && npm run build:server && npm run build:client",
-    "local-test": "jasmine --slient",
-    "local-start": "node dist/server.js",
-    "start": "server.js",
+    "local-test": "npm run local-build && jasmine --slient",
+    "local-start": "npm run local-build && node dist/server.js",
     "build": "rm -rf dist && rm -rf app.zip && npm run build:server && npm run build:client",
     "zip": "cd dist && zip -r -D ../app.zip *"
   },

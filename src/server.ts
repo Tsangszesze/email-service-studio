@@ -1,20 +1,19 @@
-// import dotenv from "dotenv";
+import dotenv from "dotenv";
 import cors from "cors";
 import ejs from "ejs";
 import express from "express";
 import fs from "fs";
 import nodemailer from "nodemailer";
 import path from "path";
+import { port, origin } from "./config";
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.use(express.static("public"))
+app.use(express.static("public"));
 
-// -- Uncomment to init environment variables for local development --
-// dotenv.config();
-// -- Uncomment to init environment variables for local development --
+dotenv.config();
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -63,9 +62,10 @@ app.get("/", (req: express.Request<OTPRequst>, res: express.Response) => {
   res.sendFile(path.join(__dirname + "/client/index.html"));
 });
 
-// -- Uncomment to start localhost server for local development and testing --
-// const port = 8000;
-// app.listen(port, () => {
-//   console.log(`Server running on localhost: ${port}`);
-// });
-// -- Uncomment to start localhost server for local development and testing --
+app.listen(port, async () => {
+  try {
+    console.log(`Server running on localhost: ${port}`);
+  } catch (error) {
+    console.error("Unable to establish the connection:", error);
+  }
+});

@@ -5,7 +5,7 @@ import express from "express";
 import fs from "fs";
 import nodemailer from "nodemailer";
 import path from "path";
-import { port, origin } from "./config";
+import { port } from "./config";
 
 const app = express();
 

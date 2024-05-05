@@ -2,13 +2,13 @@
 This is a codebase for creating a email server.
 
 ## Local Testing
-Transpile and build the app\
+(Optional) Transpile and build the app\
 ```npm run local-build```
 
-Test built app with Jasmine\
+Build and test the app with Jasmine\
 ```npm run local-test```
 
-Test built app with localhost server\
+Build the app and start localhost server\
 ```npm run local-start```
 
 ## Deployment

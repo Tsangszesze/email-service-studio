@@ -9,11 +9,25 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- control the layout on mobile browsers -->
-
-    <title>Welcome Email</title>
   </head>
   <body>
-    <h2 style="color: red">Hello {{name}}!</h2>
-    <p>We're glad to have you on board at <%= variableName %>.</p>
+    <p>Dear <%= name %>,</p>
+    <p>
+      Thank you for contacting us. This email is to notify you that your message
+      from the contact form is well received.
+    </p>
+    <p>Here's the message we got from you:</p>
+    <p><%= message %></p>
+    <p>We will get back to you as soon as possible.</p>
+    <p>
+      If you have questions about this email or any other enquiry, please email us directly: <%= email %>.
+    </p>
+    <p>All the best,</p>
+    <p><%= sender %></p>
+    <br />
+    <br />
+    <p style="color: rgba(0, 0, 0, 0.6)">
+      * This is an email supported by Email.Service.Studio. Please do not reply.
+    </p>
   </body>
 </html>

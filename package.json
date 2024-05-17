@@ -9,7 +9,7 @@
     "build:server": "npm run lint && npx tsc && cp package.json dist",
     "local-build": "npm i && npx tsc --build --clean && npm run build:server && npm run build:client",
     "local-test": "npm run local-build && jasmine --slient",
-    "local-start": "npm run local-build && node dist/server.js",
+    "local-start": "npm run lint && nodemon src/server.ts",
     "build": "rm -rf dist && rm -rf app.zip && npm run build:server && npm run build:client",
     "zip": "cd dist && zip -r -D ../app.zip *"
   },

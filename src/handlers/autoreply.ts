@@ -12,50 +12,46 @@ type AutoreplyRequst = {
   subject: string;
   name: string;
   message: string;
+  sender: string;
 };
 
 const send_autoreply = async (
   req: Request<{}, ResBody, AutoreplyRequst>,
   res: Response<ResBody>,
 ) => {
-  const { email, subject, name, message } = req.body;
-  const sender = req.get("HttpsAgent") || req.get("Httpagent");
+  const { email, subject, name, message, sender } = req.body;
 
-  if (!sender) {
-    // Need to check the req.body as well??
-    res.status(400).send(new ResBody("Agent information is missing"));
-    return;
-  }
+  // TODO: need to check the type of request body here
 
   try {
     // Read Email HTML Template
     const template = fs.readFileSync(
-      "public/email_templates/form-autoreply-email.html",
+      "/emails/email_templates/autoreply.ejs",
       "utf-8",
     );
 
     // Generate Email HTML
     const html = ejs.render(template, {
-      sender,
-      csEmail: csEmail,
       name,
       message,
+      sender,
+      csEmail: csEmail,
     });
 
     // Generate Email Text
-    const text = generateText({ sender, csEmail, name });
+    const text = generateText({ name, sender, csEmail });
 
     // Config Email Sending
     const mailOptions: Mail.Options = {
+      to: email,
+      subject: subject || "Your form was received!",
+      text: text,
+      html: html,
       bcc: csEmail,
       from: {
         name: sender || "Email.Service.Studio",
         address: hostEmail,
       },
-      to: email,
-      subject: subject || "Your form was received!",
-      text: text,
-      html: html,
     };
 
     // Send Email

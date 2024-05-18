@@ -1,6 +1,4 @@
-interface RequestWithToken extends Request {
-  apiKey: string;
-}
+import { Request } from "express";
 
 export class ResBody {
   message: string;

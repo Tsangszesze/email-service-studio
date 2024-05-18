@@ -1,11 +1,12 @@
-import 'module-alias/register';
+import "module-alias/register";
 
 import cors from "cors";
 import express, { Request, Response } from "express";
 import path from "path";
 
-import { serverPort, corsOptions } from "./config";
+import { SERVER_PORT, corsOptions, CLIENT_AUTH_PAIRS } from "./config";
 import { autoreplyRoute } from "./handlers/autoreply";
+import { ResBody } from "./types";
 
 const app = express();
 
@@ -13,24 +14,23 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/client", express.static("client"));
 
-interface RequestWithToken extends Request {
-  token?: string;
-}
+app.use((req, res, next) => {
+  const key = req.get("Authorization");
+  const origin = req.get("origin");
 
-app.use((req: RequestWithToken, res, next) => {
-});
-
-app.use((req,res,next)=> {
-  const token = req.get("Authorization")
-  if(token){
-    req.apiToken = token;
-    next();
-  } else {
-    res.status(403).send({
-      errr: "please provide key"
-    })
+  // Validate correct headers provided
+  if (!key || !origin) {
+    return res.status(400).send(new ResBody("Please correct headers"));
   }
-})
+
+  // Validate API key
+  const secret = CLIENT_AUTH_PAIRS[origin];
+  if (secret !== key) {
+    return res.status(401).send(new ResBody("Invalid API key"));
+  }
+
+  next();
+});
 
 autoreplyRoute(app);
 
@@ -38,7 +38,7 @@ app.get("/", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname + "/client/index.html"));
 });
 
-app.listen(serverPort, () => {
+app.listen(SERVER_PORT, () => {
   try {
     console.log(`Server running on ${corsOptions.origin}`);
   } catch (error) {

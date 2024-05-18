@@ -55,7 +55,7 @@ const send_autoreply = async (
 
     // Send Email
     await transporter.sendMail(mailOptions);
-    res.status(200);
+    res.status(200).end();
   } catch (error) {
     res
       .status(500)

@@ -1,6 +1,5 @@
 import express, { Request, Response } from "express";
 import ejs from "ejs";
-import fs from "fs";
 import Mail from "nodemailer/lib/mailer";
 import path from "path";
 

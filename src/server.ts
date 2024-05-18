@@ -4,7 +4,7 @@ import cors from "cors";
 import express, { Request, Response } from "express";
 import path from "path";
 
-import { SERVER_PORT, corsOptions, CLIENT_AUTH_PAIRS } from "./config";
+import { SERVER_PORT, corsOptions, CLIENT_AUTH_PAIRS, SERVER_ORIGIN } from "./config";
 import { autoreplyRoute } from "./handlers/autoreply";
 import { ResBody } from "./types";
 
@@ -40,7 +40,7 @@ app.get("/", (req: Request, res: Response) => {
 
 app.listen(SERVER_PORT, () => {
   try {
-    console.log(`Server running on ${corsOptions.origin}`);
+    console.log(`Server running on ${SERVER_ORIGIN}`);
   } catch (error) {
     console.error("Unable to establish the connection:", error);
   }

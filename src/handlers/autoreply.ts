@@ -16,7 +16,7 @@ type AutoreplyRequst = {
 };
 
 const send_autoreply = async (
-  req: Request<{}, ResBody, AutoreplyRequst>,
+  req: Request<Record<string, never>, ResBody, AutoreplyRequst>,
   res: Response<ResBody>,
 ) => {
   const { email, subject, name, message, sender } = req.body;

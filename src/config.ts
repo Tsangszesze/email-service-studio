@@ -11,7 +11,7 @@ export const CLIENT_ORIGINS = CLIENT_LIST?.split(",") || [
   "http://localhost:3000",
 ];
 
-export const CLIENT_AUTH_PAIRS: { [key: string]: any } = {};
+export const CLIENT_AUTH_PAIRS: { [key: string]: unknown } = {};
 CLIENT_LIST?.split(",").forEach(
   (client, i) => (CLIENT_AUTH_PAIRS[client] = API_KEY_LIST?.split(",")[i]),
 );

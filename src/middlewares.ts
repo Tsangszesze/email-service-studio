@@ -12,13 +12,15 @@ export const validateAPIKey = (
 
   // Validate correct headers provided
   if (!key || !origin) {
-    return res.status(400).send(new ResBody("Please correct headers"));
+    return res.status(400).send(new ResBody("Required headers not provided"));
   }
 
   // Validate API key
   const secret = CLIENT_AUTH_PAIRS[origin];
   if (!secret) {
-    return res.status(500).send(new ResBody("Server is not well configured with API keys"));
+    return res
+      .status(500)
+      .send(new ResBody("Server is not well configured with API keys"));
   }
 
   // Validate API key

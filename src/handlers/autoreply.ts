@@ -24,7 +24,6 @@ const send_autoreply = async (
   // TODO: need to check the type of request body here
 
   try {
-    
     // Generate Email HTML
     let html;
     ejs.renderFile(

@@ -11,9 +11,9 @@ import { validateAPIKey } from "./middlewares";
 const app = express();
 
 app.use(cors(corsOptions));
+app.use(validateAPIKey);
 app.use(express.json());
 app.use("/client", express.static("client"));
-app.use(validateAPIKey);
 
 autoreplyRoute(app);
 

@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import ejs from "ejs";
 import fs from "fs";
 import Mail from "nodemailer/lib/mailer";
+import path from "path";
 
 import { transporter, hostEmail, csEmail } from "../email";
 import generateText from "../emails/email-texts/autoreply";
@@ -24,19 +25,19 @@ const send_autoreply = async (
   // TODO: need to check the type of request body here
 
   try {
-    // Read Email HTML Template
-    const template = fs.readFileSync(
-      "/emails/email_templates/autoreply.ejs",
-      "utf-8",
-    );
-
+    
     // Generate Email HTML
-    const html = ejs.render(template, {
-      name,
-      message,
-      sender,
-      csEmail: csEmail,
-    });
+    let html;
+    ejs.renderFile(
+      path.join(__dirname, "../emails/email-templates/autoreply.ejs"),
+      {
+        name,
+        message,
+        sender,
+        csEmail: csEmail,
+      },
+      (err, str) => (html = str),
+    );
 
     // Generate Email Text
     const text = generateText({ name, sender, csEmail });
@@ -47,7 +48,7 @@ const send_autoreply = async (
       subject: subject || "Your form was received!",
       text: text,
       html: html,
-      bcc: csEmail,
+      // bcc: csEmail,
       from: {
         name: sender || "Email.Service.Studio",
         address: hostEmail,

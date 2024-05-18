@@ -11,10 +11,12 @@ export const CLIENT_ORIGINS = CLIENT_LIST?.split(",") || [
   "http://localhost:3000",
 ];
 
-export const CLIENT_AUTH_PAIRS: { [key: string]: unknown } = {};
-CLIENT_LIST?.split(",").forEach(
-  (client, i) => (CLIENT_AUTH_PAIRS[client] = API_KEY_LIST?.split(",")[i]),
+const API_KEYS = API_KEY_LIST?.split(",") || [""];
+const CLIENT_AUTH_PAIRS: { [key: string]: unknown } = {};
+CLIENT_ORIGINS.forEach(
+  (client, i) => (CLIENT_AUTH_PAIRS[client] = API_KEYS[i]),
 );
+export { CLIENT_AUTH_PAIRS }
 
 export const corsOptions = {
   origin: [SERVER_ORIGIN, ...CLIENT_ORIGINS],

@@ -46,7 +46,7 @@ const send_autoreply = async (
       subject: subject || "Your form was received!",
       text: text,
       html: html,
-      // bcc: csEmail,
+      bcc: csEmail,
       from: {
         name: sender || "Email.Service.Studio",
         address: hostEmail,

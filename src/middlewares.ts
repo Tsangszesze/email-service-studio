@@ -8,7 +8,7 @@ export const validateAPIKey = (
   next: NextFunction,
 ) => {
   const key = req.get("Authorization");
-  const origin = req.get("origin");
+  const origin = req.get("client");
 
   // Validate correct headers provided
   if (!key || !origin) {

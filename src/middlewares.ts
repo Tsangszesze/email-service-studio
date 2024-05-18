@@ -18,7 +18,7 @@ export const validateAPIKey = (
   // Validate API key
   const secret = CLIENT_AUTH_PAIRS[origin];
   if (!secret) {
-    return res.status(401).send(new ResBody("Invalid API key"));
+    return res.status(500).send(new ResBody("Server is not well configured with API keys"));
   }
 
   // Validate API key

@@ -1,11 +1,11 @@
-import express from "express";
+import express, { NextFunction } from "express";
 import { CLIENT_AUTH_PAIRS } from "./config";
 import { ResBody } from "./types";
 
 export const validateAPIKey = (
   req: express.Request,
   res: express.Response,
-  next: Function,
+  next: NextFunction,
 ) => {
   const key = req.get("Authorization");
   const origin = req.get("origin");

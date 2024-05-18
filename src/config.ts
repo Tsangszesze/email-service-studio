@@ -16,7 +16,7 @@ const CLIENT_AUTH_PAIRS: { [key: string]: unknown } = {};
 CLIENT_ORIGINS.forEach(
   (client, i) => (CLIENT_AUTH_PAIRS[client] = API_KEYS[i]),
 );
-export { CLIENT_AUTH_PAIRS }
+export { CLIENT_AUTH_PAIRS };
 
 export const corsOptions = {
   origin: [SERVER_ORIGIN, ...CLIENT_ORIGINS],

@@ -3,8 +3,8 @@ import ejs from "ejs";
 import fs from "fs";
 import Mail from "nodemailer/lib/mailer";
 
-import { transporter, host_email, cs_email } from "../email";
-import generateText from "../emails/email_texts/autoreply";
+import { transporter, hostEmail, csEmail } from "../email";
+import generateText from "../emails/email-texts/autoreply";
 import { ResBody } from "../types";
 
 type AutoreplyRequst = {
@@ -37,20 +37,20 @@ const send_autoreply = async (
     // Generate Email HTML
     const html = ejs.render(template, {
       sender,
-      cs_email: cs_email,
+      csEmail: csEmail,
       name,
       message,
     });
 
     // Generate Email Text
-    const text = generateText({ sender, cs_email, name });
+    const text = generateText({ sender, csEmail, name });
 
     // Config Email Sending
     const mailOptions: Mail.Options = {
-      bcc: cs_email,
+      bcc: csEmail,
       from: {
         name: sender || "Email.Service.Studio",
-        address: host_email,
+        address: hostEmail,
       },
       to: email,
       subject: subject || "Your form was received!",
@@ -70,6 +70,6 @@ const send_autoreply = async (
   }
 };
 
-export const autoreply_route = (app: express.Application) => {
+export const autoreplyRoute = (app: express.Application) => {
   app.post("/autoreply", send_autoreply);
 };

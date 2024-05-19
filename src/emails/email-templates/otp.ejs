@@ -7,17 +7,12 @@
     <p>Dear <%= name %>,</p>
 
     <p>
-      Thank you for contacting us. This email is to notify you that your message
-      from the contact form is well received.
-    </p>
-
-    <p>
       <span>Here's your one time password for verification:</span>
       <br />
       <span><%= otpContent %></span>
     </p>
 
-    <p>We will get back to you as soon as possible.</p>
+    <p>Please follow the instructions on the website to continue.</p>
 
     <div>
       If you have questions about this email or any other enquiry, please email
@@ -37,7 +32,5 @@
       *This is an email supported by Email.Service.Studio. Please do not reply.
     </p>
   </body>
-  <footer>
-    <%- include('./layouts/footer') %>
-  </footer>
+  <footer><%- include('./layouts/footer') %></footer>
 </html>

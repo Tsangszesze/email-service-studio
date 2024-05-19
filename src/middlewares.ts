@@ -20,7 +20,7 @@ export const validateAPIKey = (
   if (!secret) {
     return res
       .status(500)
-      .send(new ResBody("Server is not well configured with API keys"));
+      .send(new ResBody("API key is not configured"));
   }
 
   // Validate API key

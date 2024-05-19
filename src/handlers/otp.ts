@@ -29,9 +29,16 @@ const send_otp = async (
   req: Request<Record<string, never>, ResBody, OTPRequst>,
   res: Response<ResBody>,
 ) => {
-  const { email, name, sender } = req.body;
+  const { email, name, sender, contactEmail: senderContactEmail } = req.body;
 
   // TODO: need to check the type of request body here
+
+  const contactEmail = senderContactEmail || CS_EMAIL
+  if(!contactEmail){
+    return res
+      .status(500)
+      .send(new ResBody(`Contact Email is not configured`));
+  }
 
   try {
     // Generate OTP
@@ -51,7 +58,7 @@ const send_otp = async (
         name,
         sender,
         otpContent,
-        csEmail: CS_EMAIL,
+        contactEmail: contactEmail,
       },
       (err, str) => (html = str),
     );
@@ -61,7 +68,7 @@ const send_otp = async (
       name,
       sender,
       otpContent,
-      csEmail: CS_EMAIL,
+      contactEmail: contactEmail,
     });
 
     // Config Email Sending

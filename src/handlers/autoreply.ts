@@ -15,9 +15,16 @@ const send_autoreply = async (
   req: Request<Record<string, never>, ResBody, AutoreplyRequst>,
   res: Response<ResBody>,
 ) => {
-  const { email, name, formContent, sender } = req.body;
+  const { email, name, formContent, sender, contactEmail: senderContactEmail } = req.body;
 
   // TODO: need to check the type of request body here
+
+  const contactEmail = senderContactEmail || CS_EMAIL
+  if(!contactEmail){
+    return res
+      .status(500)
+      .send(new ResBody(`Contact Email is not configured`));
+  }
 
   try {
     // Generate Email HTML
@@ -28,13 +35,13 @@ const send_autoreply = async (
         name,
         formContent,
         sender,
-        csEmail: CS_EMAIL,
+        contactEmail: contactEmail,
       },
       (err, str) => (html = str),
     );
 
     // Generate Email Text
-    const text = generateText({ name, sender, csEmail: CS_EMAIL });
+    const text = generateText({ name, sender, contactEmail: contactEmail });
 
     // Config Email Sending
     const mailOptions: Mail.Options = {
@@ -42,7 +49,7 @@ const send_autoreply = async (
       subject: "Your contact form was received!",
       text: text,
       html: html,
-      bcc: CS_EMAIL,
+      bcc: contactEmail,
       from: {
         name: sender || "Email.Service.Studio",
         address: HOST_EMAIL || "",

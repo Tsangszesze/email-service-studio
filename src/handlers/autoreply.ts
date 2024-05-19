@@ -56,7 +56,7 @@ const send_autoreply = async (
     res
       .status(500)
       .send(
-        new ResBody(`Nodemailer error sending email to ${email}: ${error}`),
+        new ResBody(`Failed to send email to ${email}: ${error}`),
       );
   }
 };

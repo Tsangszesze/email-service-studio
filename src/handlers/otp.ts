@@ -2,13 +2,13 @@ import express, { Request, Response } from "express";
 import ejs from "ejs";
 import Mail from "nodemailer/lib/mailer";
 import path from "path";
-import cryptoRandomString from "crypto-random-string";
 import bcrypt from "bcrypt";
 
 import { transporter, HOST_EMAIL, CS_EMAIL } from "../config/email";
 import generateText from "../emails/email-texts/otp";
 import { ReqBody, ResBody } from "../types";
 import { OTP_SALT, OTP_SALT_ROUND } from "../config";
+import { Options } from "crypto-random-string";
 
 interface OTPRequst extends ReqBody {}
 
@@ -20,6 +20,11 @@ class OTPResponse extends ResBody {
   }
 }
 
+const cryptoRandomString = (arg: Options) =>
+  import("crypto-random-string").then(({ default: encode }) => {
+    return encode(arg);
+  });
+
 const send_otp = async (
   req: Request<Record<string, never>, ResBody, OTPRequst>,
   res: Response<ResBody>,
@@ -30,7 +35,7 @@ const send_otp = async (
 
   try {
     // Generate OTP
-    const otpContent = cryptoRandomString({ length: 6, type: "numeric" });
+    const otpContent = await cryptoRandomString({ length: 6, type: "numeric" });
 
     // Encode OTP with salt
     const encodedOtp = bcrypt.hashSync(
@@ -52,7 +57,12 @@ const send_otp = async (
     );
 
     // Generate Email Text
-    const text = generateText({ name, sender, otpContent, csEmail: CS_EMAIL });
+    const text = generateText({
+      name,
+      sender,
+      otpContent,
+      csEmail: CS_EMAIL,
+    });
 
     // Config Email Sending
     const mailOptions: Mail.Options = {
@@ -75,9 +85,7 @@ const send_otp = async (
   } catch (error) {
     res
       .status(500)
-      .send(
-        new ResBody(`Nodemailer error sending email to ${email}: ${error}`),
-      );
+      .send(new ResBody(`Failed to send OTP email to ${email}: ${error}`));
   }
 };
 

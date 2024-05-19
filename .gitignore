@@ -2,8 +2,9 @@
 node_modules
 package-lock.json
 
-# dotenv environment variable files
+# environment variable files
 .env
+.env.production
 
 # Typescript build output
 dist

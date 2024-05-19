@@ -1,11 +1,16 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+if (process.env.NODE_ENV === "production") {
+  dotenv.config({ path: ".env.production" });
+}
+
 const { PORT, ORIGIN, CLIENT_LIST, API_KEY_LIST } = process.env;
 
 export const MIX_SERVER_PORT = PORT || 8000;
 
-export const MIX_SERVER_ORIGIN = ORIGIN || `http://localhost:${MIX_SERVER_PORT}`;
+export const MIX_SERVER_ORIGIN =
+  ORIGIN || `http://localhost:${MIX_SERVER_PORT}`;
 export const MIX_CLIENT_ORIGINS = CLIENT_LIST?.split(",") || [
   "http://localhost:3000",
 ];

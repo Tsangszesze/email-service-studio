@@ -4,7 +4,7 @@ import cors from "cors";
 import express, { Request, Response } from "express";
 import path from "path";
 
-import { SERVER_PORT, corsOptions, SERVER_ORIGIN } from "./config";
+import { MIX_SERVER_PORT, corsOptions, MIX_SERVER_ORIGIN } from "./config";
 import { autoreplyRoute } from "./handlers/autoreply";
 import { validateAPIKey } from "./middlewares";
 
@@ -21,9 +21,9 @@ app.get("/", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname + "/client/index.html"));
 });
 
-app.listen(SERVER_PORT, () => {
+app.listen(MIX_SERVER_PORT, () => {
   try {
-    console.log(`Server running on ${SERVER_ORIGIN}`);
+    console.log(`Server running on ${MIX_SERVER_ORIGIN}`);
   } catch (error) {
     console.error("Unable to establish the connection:", error);
   }

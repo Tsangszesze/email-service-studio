@@ -1,12 +1,10 @@
-import "module-alias/register";
-
 import cors from "cors";
 import express, { Request, Response } from "express";
 import path from "path";
 
-import { MIX_SERVER_PORT, corsOptions, MIX_SERVER_ORIGIN } from "./config";
 import { autoreplyRoute } from "./handlers/autoreply";
 import { validateAPIKey } from "./middlewares";
+import { corsOptions, MIX_SERVER_ORIGIN, MIX_SERVER_PORT } from "./config";
 
 const app = express();
 

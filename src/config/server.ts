@@ -1,12 +1,5 @@
-import dotenv from "dotenv";
-dotenv.config();
-
-if (process.env.NODE_ENV === "production") {
-  dotenv.config({ path: ".env.production" });
-} else {
-  dotenv.config({ path: ".env.local" });
-}
-
+// MIX_ : only production and default
+// process.env. : production and local
 const { PORT, ORIGIN, CLIENT_LIST } = process.env;
 
 export const MIX_SERVER_PORT = PORT || 8000;

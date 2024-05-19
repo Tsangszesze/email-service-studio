@@ -2,55 +2,61 @@ import express, { Request, Response } from "express";
 import ejs from "ejs";
 import Mail from "nodemailer/lib/mailer";
 import path from "path";
+import cryptoRandomString from "crypto-random-string";
 
-import { transporter, HOST_EMAIL, CS_EMAIL } from "../config/email";
+import { transporter, HOST_EMAIL, csEmail } from "../config/email";
 import generateText from "../emails/email-texts/autoreply";
 import { ReqBody, ResBody } from "../types";
 
-interface AutoreplyRequst extends ReqBody {
-  formContent: string;
-}
+interface OTPRequst extends ReqBody {}
 
-const send_autoreply = async (
-  req: Request<Record<string, never>, ResBody, AutoreplyRequst>,
+const send_otp = async (
+  req: Request<Record<string, never>, ResBody, OTPRequst>,
   res: Response<ResBody>,
 ) => {
-  const { email, name, formContent, sender } = req.body;
+  const { email, name, sender } = req.body;
 
   // TODO: need to check the type of request body here
 
   try {
+    // Generate OTP
+    const otpContent = cryptoRandomString({ length: 6, type: "numeric" });
+
+    // Encode OTP with salt
+
     // Generate Email HTML
     let html;
     ejs.renderFile(
-      path.join(__dirname, "../emails/email-templates/autoreply.ejs"),
+      path.join(__dirname, "../emails/email-templates/otp.ejs"),
       {
         name,
-        formContent,
         sender,
-        csEmail: CS_EMAIL,
+        otpContent,
+        csEmail: csEmail,
       },
       (err, str) => (html = str),
     );
 
     // Generate Email Text
-    const text = generateText({ name, sender, csEmail: CS_EMAIL });
+    const text = generateText({ name, sender, otpContent, csEmail });
 
     // Config Email Sending
     const mailOptions: Mail.Options = {
       to: email,
-      subject: "Your contact form was received!",
+      subject: "One Time Password",
       text: text,
       html: html,
-      bcc: CS_EMAIL,
+      bcc: csEmail,
       from: {
         name: sender || "Email.Service.Studio",
-        address: HOST_EMAIL || "",
+        address: HOST_EMAIL,
       },
     };
 
     // Send Email
     await transporter.sendMail(mailOptions);
+
+    // Send back the encoded OTP to requested server
     res.status(200).end();
   } catch (error) {
     res
@@ -61,6 +67,6 @@ const send_autoreply = async (
   }
 };
 
-export const autoreplyRoute = (app: express.Application) => {
-  app.post("/autoreply", send_autoreply);
+export const otpRoute = (app: express.Application) => {
+  app.post("/otp", validateAuth, send_otp);
 };

@@ -5,6 +5,7 @@ package-lock.json
 # environment variable files
 .env
 .env.production
+.env.local
 
 # Typescript build output
 dist

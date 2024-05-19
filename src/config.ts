@@ -3,9 +3,11 @@ dotenv.config();
 
 if (process.env.NODE_ENV === "production") {
   dotenv.config({ path: ".env.production" });
+} else {
+  dotenv.config({ path: ".env.local" });
 }
 
-const { PORT, ORIGIN, CLIENT_LIST, API_KEY_LIST } = process.env;
+const { PORT, ORIGIN, CLIENT_LIST } = process.env;
 
 export const MIX_SERVER_PORT = PORT || 8000;
 
@@ -15,11 +17,13 @@ export const MIX_CLIENT_ORIGINS = CLIENT_LIST?.split(",") || [
   "http://localhost:3000",
 ];
 
-const MIX_API_KEYS = API_KEY_LIST?.split(",") || ["testingLocal"];
+const API_KEYS = process.env.API_KEY_LIST?.split(",");
 const CLIENT_AUTH_PAIRS: { [key: string]: unknown } = {};
-MIX_CLIENT_ORIGINS.forEach(
-  (client, i) => (CLIENT_AUTH_PAIRS[client] = MIX_API_KEYS[i]),
-);
+if (API_KEYS?.length) {
+  MIX_CLIENT_ORIGINS.forEach(
+    (client, i) => (CLIENT_AUTH_PAIRS[client] = API_KEYS?.[i]),
+  );
+}
 export { CLIENT_AUTH_PAIRS };
 
 export const corsOptions = {

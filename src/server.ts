@@ -15,7 +15,7 @@ app.use(express.static("public"));
 app.use("/client", express.static("client"));
 
 app.get("/", (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname + "/client/index.html"));
+  res.sendFile(path.resolve("./client/index.html"));
 });
 
 app.use(validateAPIKey);

@@ -10,13 +10,15 @@ import { otpRoute } from "./handlers/otp";
 const app = express();
 
 app.use(cors(corsOptions));
-app.use(validateAPIKey);
 app.use(express.json());
+app.use(express.static("public"));
 app.use("/client", express.static("client"));
 
 app.get("/", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname + "/client/index.html"));
 });
+
+app.use(validateAPIKey);
 
 autoreplyRoute(app);
 otpRoute(app);

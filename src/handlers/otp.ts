@@ -4,7 +4,7 @@ import Mail from "nodemailer/lib/mailer";
 import path from "path";
 import bcrypt from "bcrypt";
 
-import { transporter, HOST_EMAIL, CS_EMAIL } from "../config/email";
+import { transporter, HOST_EMAIL, CS_EMAIL } from "../config";
 import generateText from "../emails/email-texts/otp";
 import { ReqBody, ResBody } from "../types";
 import { OTP_SALT, OTP_SALT_ROUND } from "../config";
@@ -33,11 +33,9 @@ const send_otp = async (
 
   // TODO: need to check the type of request body here
 
-  const contactEmail = senderContactEmail || CS_EMAIL
-  if(!contactEmail){
-    return res
-      .status(500)
-      .send(new ResBody(`Contact Email is not configured`));
+  const contactEmail = senderContactEmail || CS_EMAIL;
+  if (!contactEmail) {
+    return res.status(500).send(new ResBody(`Contact Email is not configured`));
   }
 
   try {

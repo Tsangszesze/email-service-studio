@@ -13,32 +13,39 @@
   >
     <table
       class="body"
-      style="width: 100%; border-spacing: 0; padding: 10px"
+      style="width: 100%; border-spacing: 0; padding: 5dvw; font-size: 18px; max-width: 600px"
       border="0"
       cellspacing="0"
       cellpadding="0"
     >
       <table
         class="banner"
+        v:background="”url(email-banner.png)”"
         style="
           width: 100%;
           border-spacing: 0;
           padding: 0;
           margin: 0;
-          background-image: url(&quot;/email-banner&quot;);
+          background-image: url('data:image/png;base64,<%= banner %>');
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: center;
+          background-origin: border-box;
         "
         border="0"
         cellspacing="0"
         cellpadding="0"
       >
-        <tr>
+        <tr 
+        style="visibility: hidden;"
+        >
           <td
-            style="width: 100%; border-spacing: 0; padding: 10px"
+            style="width: 100%; border-spacing: 0; padding: 0px"
             styl
             align="center"
             style="padding: 0"
           >
-            <footer>Here is the message</footer>
+            <img src="data:image/png;base64,<%= banner %>"/>
           </td>
         </tr>
       </table>
@@ -48,39 +55,39 @@
           width: 100%;
           border-spacing: 0;
           padding: 10px;
-          background-color: #d9d9d9;
+          background-color: #FFFFFF;
         "
         border="0"
         cellspacing="0"
         cellpadding="0"
       >
         <tr>
-          <td style="width: 100%; border-spacing: 0; padding: 0">
+          <td style="width: 100%; border-spacing: 0; padding: 0; padding-bottom: 5px; font-size: 18px;  line-height: 25px">
             Dear <%= name %>,
           </td>
         </tr>
         <tr>
-          <td style="width: 100%; border-spacing: 0; padding: 0">
+          <td style="width: 100%; border-spacing: 0; padding: 0; padding-bottom: 5px; font-size: 18px;  line-height: 25px">
             Thank you for contacting us. This email is to notify you that your
             message from the contact form is well received.
           </td>
         </tr>
         <tr>
-          <td style="width: 100%; border-spacing: 0; padding: 0">
+          <td style="width: 100%; border-spacing: 0; padding: 0; padding-bottom: 5px; font-size: 18px;  line-height: 25px">
             <span>Here's the message we got from you:</span>
             <br />
             <span><%= formContent %></span>
           </td>
         </tr>
         <tr>
-          <td style="width: 100%; border-spacing: 0; padding: 0">
+          <td style="width: 100%; border-spacing: 0; padding: 0; padding-bottom: 5px; font-size: 18px;  line-height: 25px">
             We will get back to you as soon as possible.
           </td>
         </tr>
         <tr>
-          <td style="width: 100%; border-spacing: 0; padding: 0">
+          <td style="width: 100%; border-spacing: 0; padding: 0; padding-bottom: 5px; font-size: 18px;  line-height: 25px; color: black;">
             If you have questions about this email or any other enquiry, please
-            email us directly: <%= contactEmail %>.
+            email us directly: <span style="color: black !important"><%= contactEmail %></span>.
           </td>
         </tr>
         <tr>

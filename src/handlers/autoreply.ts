@@ -2,8 +2,9 @@ import express, { Request, Response } from "express";
 import ejs from "ejs";
 import Mail from "nodemailer/lib/mailer";
 import path from "path";
+import fs from "fs"
 
-import { transporter, HOST_EMAIL, CS_EMAIL } from "../config/email";
+import { transporter, HOST_EMAIL, CS_EMAIL } from "../config";
 import generateText from "../emails/email-texts/autoreply";
 import { ReqBody, ResBody } from "../types";
 
@@ -15,18 +16,25 @@ const send_autoreply = async (
   req: Request<Record<string, never>, ResBody, AutoreplyRequst>,
   res: Response<ResBody>,
 ) => {
-  const { email, name, formContent, sender, contactEmail: senderContactEmail } = req.body;
+  const {
+    email,
+    name,
+    formContent,
+    sender,
+    contactEmail: senderContactEmail,
+  } = req.body;
 
   // TODO: need to check the type of request body here
 
-  const contactEmail = senderContactEmail || CS_EMAIL
-  if(!contactEmail){
-    return res
-      .status(500)
-      .send(new ResBody(`Contact Email is not configured`));
+  const contactEmail = senderContactEmail || CS_EMAIL;
+  if (!contactEmail) {
+    return res.status(500).send(new ResBody(`Contact Email is not configured`));
   }
 
   try {
+    // Get base-64 string of email banner
+    // var banner = fs.readFileSync(path.join(__dirname, "../../public/email-banner.png"), 'base64');
+
     // Generate Email HTML
     let html;
     ejs.renderFile(
@@ -36,6 +44,7 @@ const send_autoreply = async (
         formContent,
         sender,
         contactEmail: contactEmail,
+        // banner: banner
       },
       (err, str) => (html = str),
     );
@@ -62,9 +71,7 @@ const send_autoreply = async (
   } catch (error) {
     res
       .status(500)
-      .send(
-        new ResBody(`Failed to send email to ${email}: ${error}`),
-      );
+      .send(new ResBody(`Failed to send email to ${email}: ${error}`));
   }
 };
 

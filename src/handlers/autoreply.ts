@@ -9,7 +9,7 @@ import generateText from "../emails/email-texts/autoreply";
 import { ReqBody, ResBody } from "../types";
 
 interface AutoreplyRequst extends ReqBody {
-  formContent: string;
+  message: string;
 }
 
 const send_autoreply = async (
@@ -19,7 +19,7 @@ const send_autoreply = async (
   const {
     email,
     name,
-    formContent,
+    message: formContent,
     sender,
     contactEmail: senderContactEmail,
   } = req.body;

@@ -3,15 +3,78 @@
   <head>
     <title>Email.Service.Studio</title>
     <link rel="icon" type="image/x-icon" href="/client/favicon.ico" />
-    <link href="/client/tailwind_styles.css" rel="stylesheet">
+    <link href="/client/tailwind_styles.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="This is the home page of the Email.Service.Studio. It is a server that can work as part of a microservice architecture to provide email services to satisfy most websites' common email use cases."
+      content="This is the home page of the Email.Service.Studio. It is a microservice template that can be used to provide email services to satisfy websites' common email use cases."
     />
   </head>
-  <body>
-    <h2 class="text-red-400">API Documentation</h2>
-    <img src="/client/icon.png" alt="Email.Service.Studio Icon" />
+  <body
+    class="text-white bg-black-100 max-w-90dvw w-dwh flex flex-col p-0.1  items-center"
+  >
+    <section
+      class="flex flex-col gap-4 md:gap-5 justify-center items-start md:items-center max-w-[800px] text-left md:text-center mb-12 md:mb-20"
+    >
+      <h1
+        class="font-extrabold text-3xl md:text-6xl md:leading-[1.2] bg-clip-text text-transparent bg-gradient-to-r from-rose-300 to-yellow-300"
+      >
+        Welcome to Email.Service.Studio
+      </h1>
+      <h2 class="text-base md:text-lg">
+        This is a customizable microservice template that can be directly
+        deployed to create your own microservice. It can satisfy common email
+        use cases for your websites.
+      </h2>
+      <div class="flex max-h-[100px] gap-2">
+        <img class="w-[25px] md:w-[30px]" src="/client/assets/1.png" />
+        <img class="w-[25px] md:w-[30px]" src="/client/assets/2.png" />
+        <img class="w-[25px] md:w-[30px]" src="/client/assets/3.png" />
+        <img class="w-[25px] md:w-[30px]" src="/client/assets/4.png" />
+        <img class="w-[25px] md:w-[30px]" src="/client/assets/5.png" />
+      </div>
+    </section>
+    <section
+      class="flex flex-col gap-6 md:gap-7 justify-center text-sm md:text-base w-full max-w-[800px]"
+    >
+      <article class="bg-gradient-to-r from-rose-300 to-yellow-300 p-1">
+        <div
+          class="flex flex-col gap-2 justify-center items-start bg-black-100 p-5"
+        >
+          <div class="flex flex-col gap-2 justify-center">
+            <h3 class="text-lg md:text-2xl font-medium">Auto-Reply Email</h3>
+            <div class="flex gap-2 justify-start text-sm">
+              <span class="text-green-500">POST</span>
+              <code>/autoreply</code>
+            </div>
+            <p class="text-neutral-400">
+              When visitors have submitted a form on your website, you may like
+              to send an automated email to them and forward the email to
+              relevant parties to follow up.
+            </p>
+          </div>
+        </div>
+      </article>
+      <article class="bg-gradient-to-r from-rose-300 to-yellow-300 p-1">
+        <div
+          class="flex flex-col gap-2 justify-center items-start bg-black-100 p-5"
+        >
+          <div class="flex flex-col gap-2 justify-center">
+            <h3 class="text-lg md:text-2xl font-medium">OTP Email</h3>
+            <div class="flex gap-2 justify-start text-sm">
+              <span class="text-green-500">POST</span>
+              <code>/otp</code>
+            </div>
+            <p class="text-neutral-400">
+              You can send one-time password (OTP) emails to the users for
+              signup or login verification.
+            </p>
+          </div>
+        </div>
+      </article>
+    </section>
   </body>
+  <footer class="opacity-40 text-sm mt-14 md:mt-20">
+    @ 2024 Email.Service.Studio
+  </footer>
 </html>

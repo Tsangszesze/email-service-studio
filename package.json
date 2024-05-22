@@ -5,12 +5,13 @@
   "main": "src/server.ts",
   "scripts": {
     "lint": "npx prettier src/. --write --check && npx eslint src/.",
+    "local-dev:server": "npm run lint && nodemon src/server.ts",
+    "local-dev:client": "npx tailwindcss -i client/styles.css -o client/tailwind_styles.css --watch",
     "build:client": "npx tailwindcss client/styles.css -o client/tailwind_styles.css && cp -rf client/ dist/client",
     "build:server": "npm run lint && npx tsc && cp package.json dist && cp -rf public/ dist/public",
-    "local-build": "npm i && npx tsc --build --clean && npm run build:server && npm run build:client",
+    "local-build": "npx tsc --build --clean && npm i && npm run build:server && npm run build:client",
+    "local-start": "npm run local-build && node dist/server.js",
     "local-test": "npm run local-build && jasmine --slient",
-    "local-start:server": "npm run lint && nodemon src/server.ts",
-    "local-start:client": "npx tailwindcss -i client/styles.css -o client/tailwind_styles.css --watch",
     "build": "rm -rf dist && rm -rf app.zip && npm i && npm run build:server && npm run build:client",
     "zip": "cd dist && zip -r -D ../app.zip *"
   },

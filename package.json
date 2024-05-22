@@ -7,12 +7,13 @@
     "lint": "npx prettier src/. --write --check && npx eslint src/.",
     "local-dev:server": "npm run lint && nodemon src/server.ts",
     "local-dev:client": "npx tailwindcss -i client/styles.css -o client/tailwind_styles.css --watch",
+    "build:docs": "npx tailwindcss docs/styles.css -o docs/tailwind_styles.css",
     "build:client": "npx tailwindcss client/styles.css -o client/tailwind_styles.css && cp -rf client/ dist/client",
     "build:server": "npm run lint && npx tsc && cp package.json dist && cp -rf public/ dist/public",
-    "local-build": "npx tsc --build --clean && npm i && npm run build:server && npm run build:client",
+    "local-build": "npx tsc --build --clean && npm i && npm run build:server && npm run build:client && build:docs",
     "local-start": "npm run local-build && node dist/server.js",
     "local-test": "npm run local-build && jasmine --slient",
-    "build": "rm -rf dist && rm -rf app.zip && npm i && npm run build:server && npm run build:client",
+    "build": "rm -rf dist && rm -rf app.zip && npm i && npm run build:server && npm run build:client && build:docs",
     "zip": "cd dist && zip -r -D ../app.zip *"
   },
   "repository": {

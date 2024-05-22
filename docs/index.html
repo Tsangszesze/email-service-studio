@@ -11,10 +11,10 @@
     />
   </head>
   <body
-    class="text-white bg-black-100 max-w-90dvw w-dwh flex flex-col p-0.1 items-center"
+    class="text-white bg-black-100 max-w-90dvw w-dwh flex flex-col p-0.1 items-center gap-12 md:gap-20"
   >
     <section
-      class="flex flex-col gap-4 md:gap-5 justify-center items-start md:items-center max-w-[800px] text-left md:text-center mb-12 md:mb-20"
+      class="flex flex-col gap-4 md:gap-5 justify-center items-start md:items-center max-w-[800px] text-left md:text-center"
     >
       <h1
         class="font-extrabold text-3xl md:text-6xl md:leading-[1.2] bg-clip-text text-transparent bg-gradient-to-r from-rose-300 to-yellow-300"
@@ -51,30 +51,34 @@
     </section> -->
     <section
       id="endpoints-menu"
-      class="flex flex-col w-full max-w-[800px] bg-clip-text text-transparent bg-gradient-to-r from-rose-300 to-yellow-300 mb-5 md:mb-10 gap-2"
+      class="flex flex-col w-full max-w-[800px] bg-clip-text text-transparent bg-gradient-to-r from-rose-300 to-yellow-300 gap-1"
     >
-      <h2 class="text-white text-xl md:text-3xl font-medium mb-2">
+      <h2 class="text-white text-lg md:text-2xl font-medium">
         API Endpoints :
       </h2>
-      <p class="text-lg md:text-2xl flex gap-2">
+      <p class="text-sm leading-5 md:text-xl flex gap-2">
         <span class="text-white">➤</span
-        ><a href="#endpoints-autoreply" class="font-medium hover:bg-opacity-70">Auto-Reply Email</a>
+        ><a href="#endpoints-autoreply" class="font-medium hover:bg-opacity-70"
+          >Auto-Reply Email</a
+        >
       </p>
-      <p class="text-lg md:text-2xl flex gap-2">
-        <span class="text-white">➡︎</span
-        ><a href="#endpoints-otp" class="font-medium hover:bg-opacity-70">OTP Email</a>
+      <p class="text-sm leading-5 md:text-xl flex gap-2">
+        <span class="text-white">➤</span
+        ><a href="#endpoints-otp" class="font-medium hover:bg-opacity-70"
+          >One-Time Password Email (OTP Email)</a
+        >
       </p>
     </section>
     <section
       id="endpoints"
-      class="flex flex-col gap-6 md:gap-7 justify-center text-sm md:text-base w-full max-w-[800px]"
+      class="flex flex-col gap-6 md:gap-8 justify-center text-sm md:text-base w-full max-w-[800px]"
     >
       <article
         id="endpoints-autoreply"
         class="bg-gradient-to-r from-rose-300 to-yellow-300 p-1"
       >
         <div class="flex flex-col justify-center items-start bg-black-100 p-5">
-          <div class="inner-container flex flex-col gap-4">
+          <div class="inner-container max-w-full flex flex-col gap-4">
             <div class="flex flex-col gap-1">
               <h3 class="text-lg md:text-2xl font-medium">Auto-Reply Email</h3>
               <div class="flex gap-2 justify-start text-sm">
@@ -88,53 +92,87 @@
               </p>
             </div>
             <div class="flex flex-col gap-2">
-              <p>Parameters:</p>
-              <code
-                class="bg-white bg-opacity-10 text-xs md:text-sm rounded-md p-4"
+              <p>Request Schema:</p>
+              <div
+                class="overflow-x-scroll w-100% max-w-full bg-white bg-opacity-10 rounded-md p-4"
               >
-                email: string;<br />
-                name: string;<br />
-                sender: string;<br />
-                contactEmail?: string;<br />
-                message: string;<br
-              /></code>
+                <code class="text-xs md:text-sm text-nowrap">
+                  email: string;<br />
+                  name: string;<br />
+                  sender: string;<br />
+                  contactEmail?: string;<br />
+                  message: string;<br
+                /></code>
+              </div>
             </div>
             <div class="flex flex-col gap-2">
-              <p>Parameters:</p>
-              <code
-                class="bg-white bg-opacity-10 text-xs md:text-sm rounded-md p-4"
+              <p>Request Example:</p>
+              <div
+                class="overflow-x-scroll w-100% max-w-full bg-white bg-opacity-10 rounded-md p-4"
               >
-                email: "visitor@example.com",<br />
-                name: "Visitor Name",<br />
-                sender: "Email.Service.Studio",<br />
-                contactEmail?: "customerService@example.com",<br />
-                message: "I have a issue about the online payment ...",<br
-              /></code>
+                <code class="text-xs md:text-sm text-nowrap">
+                  email: "visitor@example.com",<br />
+                  name: "Visitor Name",<br />
+                  sender: "Email.Service.Studio",<br />
+                  contactEmail: "customerService@example.com",<br />
+                  message: "I have a issue about the online payment ...",<br
+                /></code>
+              </div>
             </div>
           </div>
         </div>
       </article>
+
       <article
         id="endpoints-otp"
         class="bg-gradient-to-r from-rose-300 to-yellow-300 p-1"
       >
         <div class="flex flex-col justify-center items-start bg-black-100 p-5">
-          <div class="inner-container flex flex-col gap-4">
-            <h3 class="text-lg md:text-2xl font-medium">OTP Email</h3>
-            <div class="flex gap-2 justify-start text-sm">
-              <span class="text-green-500">POST</span>
-              <code>/otp</code>
+          <div class="inner-container max-w-full flex flex-col gap-4">
+            <div class="flex flex-col gap-1">
+              <h3 class="text-lg md:text-2xl font-medium">OTP Email</h3>
+              <div class="flex gap-2 justify-start text-sm">
+                <span class="text-green-500">POST</span>
+                <code>/otp</code>
+              </div>
+              <p class="text-neutral-400">
+                You can request to send one-time password (OTP) emails to the
+                users for signup or login verification. The generated OTP will
+                be encoded and returned in the response.
+              </p>
             </div>
-            <p class="text-neutral-400">
-              You can send one-time password (OTP) emails to the users for
-              signup or login verification.
-            </p>
+            <div class="flex flex-col gap-2">
+              <p>Request Schema:</p>
+              <div
+                class="overflow-x-scroll w-100% max-w-full bg-white bg-opacity-10 rounded-md p-4"
+              >
+                <code class="text-xs md:text-sm text-nowrap">
+                  email: string;<br />
+                  name: string;<br />
+                  sender: string;<br />
+                  contactEmail?: string;<br
+                /></code>
+              </div>
+            </div>
+            <div class="flex flex-col gap-2">
+              <p>Request Example:</p>
+              <div
+                class="overflow-x-scroll w-100% max-w-full bg-white bg-opacity-10 rounded-md p-4"
+              >
+                <code class="text-xs md:text-sm text-nowrap">
+                  email: "new_user@example.com",<br />
+                  name: "User Name",<br />
+                  sender: "Email.Service.Studio",<br />
+                  contactEmail: "ITSupport@example.com",<br
+                /></code>
+              </div>
+            </div>
           </div>
         </div>
       </article>
     </section>
   </body>
-  <footer class="opacity-40 text-sm mt-14 md:mt-20">
+  <footer class="opacity-40 text-sm mt-14 md:mt-20 text-center">
     @ 2024 Email.Service.Studio
   </footer>
 </html>

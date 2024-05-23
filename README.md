@@ -1,14 +1,17 @@
-# ![](./favicon.png)mail.Service.Studio 
+# Email.Service.Studio
 
 This is a customizable microservice template that can be directly deployed to create your own microservice. It can satisfy common email use cases for your websites.
-<a href="https://tsangszesze.github.io/email-service-studio/" style="color:#f0ccb0; font-weight: 500;">Homepage</a>
+[Homepage](https://tsangszesze.github.io/email-service-studio/)
 
 
 - Sending auto-reply emails for contact form 📮
 - Sending OTP emails 🧩
 - Coming Soon ...
 
-⬇︎⬇︎ Wanna have a quick start? Clone it and go through the following ⬇︎⬇︎
+<br/>
+
+↓↓ Wanna have a quick start? Clone it and go through the following ↓↓ 
+<br/>
 
 ## Getting Started
 
@@ -24,6 +27,8 @@ This is a customizable microservice template that can be directly deployed to cr
    `npm run local-dev:client`
 
 4. Ready for development
+
+<br/>
 
 ## Configuration and Customization
 
@@ -71,6 +76,8 @@ This is a customizable microservice template that can be directly deployed to cr
 2. Inside src/emails, there are `email-templates` and `email-texts` folders that you can edit the HTML and text versions of email templates, respectively
 
 3. (Optional) Explore and customize based on your needs
+
+<br/>
 
 ## Getting Ready to Deploy
 

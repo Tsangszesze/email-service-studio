@@ -84,7 +84,7 @@ This is a customizable microservice template that can be directly deployed to cr
 ### Once finished customization, you can deploy it:
 
 1. (Optional) test the final version of the app locally :\
-   `npm run local-start`
+   `npm run local-build && npm run local-start`
 
 2. Build the app for deployment :\
    `npm run build`

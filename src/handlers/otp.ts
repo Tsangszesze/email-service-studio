@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import ejs from "ejs";
 import Mail from "nodemailer/lib/mailer";
 import path from "path";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 import { transporter, HOST_EMAIL, CS_EMAIL } from "../config";
 import generateText from "../emails/email-texts/otp";

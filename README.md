@@ -3,14 +3,13 @@
 This is a customizable microservice template that can be directly deployed to create your own microservice. It can satisfy common email use cases for your websites.
 [Homepage](https://tsangszesze.github.io/email-service-studio/)
 
-
 - Sending auto-reply emails for contact form 📮
 - Sending OTP emails 🧩
 - Coming Soon ...
 
 <br/>
 
-↓↓ Wanna have a quick start? Clone it and go through the following ↓↓ 
+↓↓ Wanna have a quick start? Clone it and go through the following ↓↓
 <br/>
 
 ## Getting Started
@@ -58,7 +57,7 @@ This is a customizable microservice template that can be directly deployed to cr
    \*variables here are suggested to have a separated set for production
 
 5. Set the auth variables :\
-   *CLIENT_LIST is optional for local development, by default is http://localhost:3000
+   \*CLIENT_LIST is optional for local development, by default is http://localhost:3000
 
    ```
    CLIENT_LIST=http://website_that_can_call_the_service.com
@@ -70,7 +69,9 @@ This is a customizable microservice template that can be directly deployed to cr
    OTP_SALT=random_long_string_to_shared_with_valid_client
    OTP_SALT_ROUND=an_integer
    ```
+
 ### Add your own information and environment variables:
+
 1. Search `Email.Service.Studio` in the entire app, and replace it with the name of the service/your brand
 
 2. Inside src/emails, there are `email-templates` and `email-texts` folders that you can edit the HTML and text versions of email templates, respectively
@@ -95,7 +96,7 @@ This is a customizable microservice template that can be directly deployed to cr
 4. Deploy to your chosen platform
 
 5. Set the environment variables in the platform for production :\
-   *same set of variables in `.env.local` but with values for production
+   \*same set of variables in `.env.local` but with values for production
    ```
    CLIENT_LIST=https://website1.com,https://website2.com
    API_KEY_LIST=key_for_website1,key_for_website2

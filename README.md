@@ -103,3 +103,27 @@ This is a customizable microservice template that can be directly deployed to cr
    OTP_SALT=random_long_string_to_shared_with_valid_client
    OTP_SALT_ROUND=an_integer
    ```
+
+## Scripts
+
+In `package.json`:
+
+```
+...
+"scripts": {
+   "lint": "npx prettier src/. --write --check && npx eslint src/.",
+   "local-dev:server": "npm run lint && nodemon src/server.ts",
+   "local-dev:client": "npx tailwindcss -i client/styles.css -o client/tailwind_styles.css --watch",
+   "build:docs": "npx tailwindcss build -i docs/styles.css -o docs/tailwind_styles.css --minify",
+   "build:client": "npx tailwindcss build -i client/styles.css -o client/tailwind_styles.css --minify && cp -rf client/ dist/client",
+   "build:server": "npm run lint && npx tsc && cp package.json dist && cp -rf public/ dist/public",
+   "build:all": "npm run build:server && npm run build:client && npm run build:docs",
+   "local-test": "npm run local-build && jasmine --slient",
+   "local-build": "npx tsc --build --clean && npm run build:all && cd dist && npm install --omit=dev",
+   "local-start": "node dist/server.js",
+   "build": "rm -rf dist && rm -rf app.zip && npm run build:all && cd dist && npm install --omit=dev ",
+   "start": "node server.js",
+   "zip": "cd dist && zip -r -D ../app.zip *"
+},
+...
+```

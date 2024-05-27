@@ -50,14 +50,14 @@ const send_autoreply = async (
     );
 
     // Generate Email Text
-    const text = generateText({ name, sender, contactEmail: contactEmail });
+    const text = generateText({ name, sender, contactEmail: contactEmail, formContent });
 
     // Config Email Sending
     const mailOptions: Mail.Options = {
       to: email,
       subject: "Your contact form was received!",
-      text: text,
       html: html,
+      text: text,
       bcc: contactEmail,
       from: {
         name: sender || "Email.Service.Studio",

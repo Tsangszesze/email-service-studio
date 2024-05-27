@@ -1,8 +1,8 @@
 // MIX_ : only production and default
 // process.env. : production and local
-const { PORT, ORIGIN, CLIENT_LIST } = process.env;
+const { ORIGIN, CLIENT_LIST } = process.env;
 
-export const MIX_SERVER_PORT = PORT || 8081;
+export const MIX_SERVER_PORT = 8081;
 
 export const MIX_SERVER_ORIGIN =
   ORIGIN || `http://localhost:${MIX_SERVER_PORT}`;

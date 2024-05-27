@@ -72,11 +72,13 @@ This is a customizable microservice template that can be directly deployed to cr
 
 ### Add your own information and environment variables:
 
-1. Search `Email.Service.Studio` in the entire app, and replace it with the name of the service/your brand
+1. Search `Email.Service.Studio` in the entire app, replace it with the name of the service/your brand
 
-2. Inside src/emails, there are `email-templates` and `email-texts` folders that you can edit the HTML and text versions of email templates, respectively
+2. Search `email.service.studio@gmail.com` in the entire app, replace it with the contact email address for your service or remove the relevant content if you do not want email recipients to contact you
 
-3. (Optional) Explore and customize based on your needs
+3. Inside src/emails, there are `email-templates` and `email-texts` folders that you can edit the HTML and text versions of email templates, respectively
+
+4. (Optional) Explore and customize based on your needs
 
 <br/>
 

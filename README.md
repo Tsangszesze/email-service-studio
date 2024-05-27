@@ -65,10 +65,13 @@ This is a customizable microservice template that can be directly deployed to cr
    ```
 
 6. Set the otp variables :
+
    ```
    OTP_SALT=random_long_string_to_shared_with_valid_client
    OTP_SALT_ROUND=an_integer
    ```
+
+7. In `src/config/index.ts`, uncomment codes accordingly to load the environment variables
 
 ### Add your own information and environment variables:
 
@@ -76,7 +79,7 @@ This is a customizable microservice template that can be directly deployed to cr
 
 2. Search `email.service.studio@gmail.com` in the entire app, replace it with the contact email address for your service or remove the relevant content if you do not want email recipients to contact you
 
-3. Inside src/emails, there are `email-templates` and `email-texts` folders that you can edit the HTML and text versions of email templates, respectively
+3. Inside `public/email-templates` and `src/helpers/email-texts` folders you can edit the HTML and text versions of email templates, respectively
 
 4. (Optional) Explore and customize based on your needs
 

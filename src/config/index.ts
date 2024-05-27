@@ -1,4 +1,4 @@
-// Uncomment for local development
+// Uncomment codes below to load environment variables for local development
 
 // import dotenv from "dotenv";
 // dotenv.config();

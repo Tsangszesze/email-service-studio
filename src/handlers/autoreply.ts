@@ -5,7 +5,7 @@ import path from "path";
 // import fs from "fs";
 
 import { transporter, HOST_EMAIL, CS_EMAIL } from "../config";
-import generateText from "../emails/email-texts/autoreply";
+import generateText from "../helpers/email-texts/autoreply";
 import { ReqBody, ResBody } from "../types";
 
 interface AutoreplyRequst extends ReqBody {
@@ -38,7 +38,7 @@ const send_autoreply = async (
     // Generate Email HTML
     let html;
     ejs.renderFile(
-      path.join(__dirname, "../emails/email-templates/autoreply.ejs"),
+      path.join(process.cwd(), "/public/email-templates/autoreply.ejs"),
       {
         name,
         formContent,
@@ -50,7 +50,12 @@ const send_autoreply = async (
     );
 
     // Generate Email Text
-    const text = generateText({ name, sender, contactEmail: contactEmail, formContent });
+    const text = generateText({
+      name,
+      sender,
+      contactEmail: contactEmail,
+      formContent,
+    });
 
     // Config Email Sending
     const mailOptions: Mail.Options = {

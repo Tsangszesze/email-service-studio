@@ -5,7 +5,7 @@ import path from "path";
 import bcrypt from "bcryptjs";
 
 import { transporter, HOST_EMAIL, CS_EMAIL } from "../config";
-import generateText from "../emails/email-texts/otp";
+import generateText from "../helpers/email-texts/otp";
 import { ReqBody, ResBody } from "../types";
 import { OTP_SALT, OTP_SALT_ROUND } from "../config";
 import { Options } from "crypto-random-string";
@@ -51,7 +51,7 @@ const send_otp = async (
     // Generate Email HTML
     let html;
     ejs.renderFile(
-      path.join(__dirname, "../emails/email-templates/otp.ejs"),
+      path.join(process.cwd(), "/public/email-templates/otp.ejs"),
       {
         name,
         sender,

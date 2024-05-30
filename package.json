@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "npx prettier src/. --write --check && npx eslint src/.",
     "local-dev:server": "npm run lint && nodemon src/server.ts",
-    "local-dev:client": "npx tailwindcss -i client/styles.css -o client/tailwind_styles.css --watch",
+    "local-dev:client": "npx tailwindcss -i client/styles.css -o client/tailwind_styles.css --watch  --minify",
     "build:docs": "npx tailwindcss build -i docs/styles.css -o docs/tailwind_styles.css --minify",
     "build:client": "npx tailwindcss build -i client/styles.css -o client/tailwind_styles.css --minify && cp -rf client/ dist/client",
     "build:server": "npm run lint && npx tsc && cp package.json dist && cp -rf public/ dist/public",

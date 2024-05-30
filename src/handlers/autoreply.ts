@@ -6,15 +6,15 @@ import path from "path";
 
 import { transporter, HOST_EMAIL, CS_EMAIL } from "../config";
 import generateText from "../helpers/email-texts/autoreply";
-import { ReqBody, ResBody } from "../types";
+import { ReqBody } from "../types";
 
 interface AutoreplyRequst extends ReqBody {
   message: string;
 }
 
 const send_autoreply = async (
-  req: Request<Record<string, never>, ResBody, AutoreplyRequst>,
-  res: Response<ResBody>,
+  req: Request<Record<string, never>, string, AutoreplyRequst>,
+  res: Response<string>,
 ) => {
   const {
     email,
@@ -28,7 +28,7 @@ const send_autoreply = async (
 
   const contactEmail = senderContactEmail || CS_EMAIL;
   if (!contactEmail) {
-    return res.status(500).send(new ResBody(`Contact Email is not configured`));
+    return res.status(500).send((`Contact Email is not configured`));
   }
 
   try {
@@ -72,11 +72,11 @@ const send_autoreply = async (
 
     // Send Email
     await transporter.sendMail(mailOptions);
-    res.status(200).end();
+    res.status(200).send((`Success`));
   } catch (error) {
     res
       .status(500)
-      .send(new ResBody(`Failed to send email to ${email}: ${error}`));
+      .send((`Failed to send email to ${email}: ${error}`));
   }
 };
 

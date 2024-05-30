@@ -1,6 +1,5 @@
 import express, { NextFunction } from "express";
 import { CLIENT_AUTH_PAIRS } from "./config";
-import { ResBody } from "./types";
 
 export const validateAPIKey = (
   req: express.Request,
@@ -12,18 +11,18 @@ export const validateAPIKey = (
 
   // Validate correct headers provided
   if (!key || !origin) {
-    return res.status(400).send(new ResBody("Required headers not provided"));
+    return res.status(400).send("Required headers not provided");
   }
 
   // Get preserved API key
   const secret = CLIENT_AUTH_PAIRS[origin];
   if (!secret) {
-    return res.status(500).send(new ResBody("API key is not configured"));
+    return res.status(500).send("API key is not configured");
   }
 
   // Validate API key
   if (secret !== key) {
-    return res.status(401).send(new ResBody("Invalid API key"));
+    return res.status(401).send(("Invalid API key"));
   }
 
   next();

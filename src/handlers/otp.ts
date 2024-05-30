@@ -6,19 +6,11 @@ import bcrypt from "bcryptjs";
 
 import { transporter, HOST_EMAIL, CS_EMAIL } from "../config";
 import generateText from "../helpers/email-texts/otp";
-import { ReqBody, ResBody } from "../types";
+import { ReqBody } from "../types";
 import { OTP_SALT, OTP_SALT_ROUND } from "../config";
 import { Options } from "crypto-random-string";
 
 interface OTPRequst extends ReqBody {}
-
-class OTPResponse extends ResBody {
-  otp: string;
-  constructor(message: string, otp: string) {
-    super(message);
-    this.otp = otp;
-  }
-}
 
 const cryptoRandomString = (arg: Options) =>
   import("crypto-random-string").then(({ default: encode }) => {
@@ -26,8 +18,8 @@ const cryptoRandomString = (arg: Options) =>
   });
 
 const send_otp = async (
-  req: Request<Record<string, never>, ResBody, OTPRequst>,
-  res: Response<ResBody>,
+  req: Request<Record<string, never>, string, OTPRequst>,
+  res: Response<string>,
 ) => {
   const { email, name, sender, contactEmail: senderContactEmail } = req.body;
 
@@ -35,7 +27,7 @@ const send_otp = async (
 
   const contactEmail = senderContactEmail || CS_EMAIL;
   if (!contactEmail) {
-    return res.status(500).send(new ResBody(`Contact Email is not configured`));
+    return res.status(500).send((`Contact Email is not configured`));
   }
 
   try {
@@ -86,11 +78,11 @@ const send_otp = async (
     await transporter.sendMail(mailOptions);
 
     // Send back the encoded OTP to requested server
-    res.status(200).send(new OTPResponse("An OTP email sent", encodedOtp));
+    res.status(200).send(encodedOtp);
   } catch (error) {
     res
       .status(500)
-      .send(new ResBody(`Failed to send OTP email to ${email}: ${error}`));
+      .send((`Failed to send OTP email to ${email}: ${error}`));
   }
 };
 

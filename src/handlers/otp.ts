@@ -27,7 +27,7 @@ const send_otp = async (
 
   const contactEmail = senderContactEmail || CS_EMAIL;
   if (!contactEmail) {
-    return res.status(500).send((`Contact Email is not configured`));
+    return res.status(500).send(`Contact Email is not configured`);
   }
 
   try {
@@ -80,9 +80,7 @@ const send_otp = async (
     // Send back the encoded OTP to requested server
     res.status(200).send(encodedOtp);
   } catch (error) {
-    res
-      .status(500)
-      .send((`Failed to send OTP email to ${email}: ${error}`));
+    res.status(500).send(`Failed to send OTP email to ${email}: ${error}`);
   }
 };
 

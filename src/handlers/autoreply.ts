@@ -28,7 +28,7 @@ const send_autoreply = async (
 
   const contactEmail = senderContactEmail || CS_EMAIL;
   if (!contactEmail) {
-    return res.status(500).send((`Contact Email is not configured`));
+    return res.status(500).send(`Contact Email is not configured`);
   }
 
   try {
@@ -74,9 +74,7 @@ const send_autoreply = async (
     await transporter.sendMail(mailOptions);
     res.status(200).end();
   } catch (error) {
-    res
-      .status(500)
-      .send((`Failed to send email to ${email}: ${error}`));
+    res.status(500).send(`Failed to send email to ${email}: ${error}`);
   }
 };
 

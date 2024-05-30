@@ -22,7 +22,7 @@ export const validateAPIKey = (
 
   // Validate API key
   if (secret !== key) {
-    return res.status(401).send(("Invalid API key"));
+    return res.status(401).send("Invalid API key");
   }
 
   next();

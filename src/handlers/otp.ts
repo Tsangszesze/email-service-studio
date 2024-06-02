@@ -30,6 +30,10 @@ const send_otp = async (
     return res.status(500).send(`Contact Email is not configured`);
   }
 
+  if (!OTP_SALT) {
+    return res.status(500).send(`OTP env is not configured`);
+  }
+
   try {
     // Generate OTP
     const otpContent = await cryptoRandomString({ length: 6, type: "numeric" });

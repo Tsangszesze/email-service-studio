@@ -3,20 +3,32 @@
   <head>
     <%- include('./layouts/head') %>
   </head>
-  <body>
+  <body style="font-size: 16px; line-height: 22px">
     <p>Dear <%= name %>,</p>
 
     <p>
-      <span>Here's your one time password for verification:</span>
-      <br />
-      <span><%= otpContent %></span>
+      <span>Here is your code for verification :</span>
     </p>
 
-    <p>Please follow the instructions on the website to continue.</p>
+    <p>
+      <span
+        style="
+          letter-spacing: 2px;
+          font-size: 26px !important;
+          font-weight: 500;
+        "
+        ><%= otpContent %></span
+      >
+    </p>
+
+    <p>
+      The code is valid for the next 15 minutes. Please follow the instructions
+      on the website to continue.
+    </p>
 
     <div>
-      If you have questions about this email or any other enquiries, please email
-      us directly: <%= contactEmail %>.
+      If you have questions about this email or any other enquiries, please
+      email us directly: <%= contactEmail %>.
     </div>
 
     <p>
@@ -28,7 +40,7 @@
     <br />
     <br />
 
-    <p style="color: rgba(0, 0, 0, 0.5); font-size: 14px">
+    <p style="color: rgba(0, 0, 0, 0.5)">
       *This is an email supported by Email.Service.Studio. Please do not reply.
     </p>
   </body>

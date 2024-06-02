@@ -7,7 +7,7 @@ import bcrypt from "bcryptjs";
 import { transporter, HOST_EMAIL, CS_EMAIL } from "../config";
 import generateText from "../helpers/email-texts/otp";
 import { ReqBody } from "../types";
-import { OTP_SALT, OTP_SALT_ROUND } from "../config";
+import { OTP_PEPPER, OTP_PEPPER_ROUND } from "../config";
 import randomstring from "randomstring";
 
 interface OTPRequst extends ReqBody {}
@@ -25,7 +25,7 @@ const send_otp = async (
     return res.status(500).send(`Contact Email is not configured`);
   }
 
-  if (!OTP_SALT) {
+  if (!OTP_PEPPER) {
     return res.status(500).send(`OTP env is not configured`);
   }
 
@@ -38,8 +38,8 @@ const send_otp = async (
 
     // Encode OTP with salt
     const encodedOtp = bcrypt.hashSync(
-      otpContent + OTP_SALT,
-      parseInt(OTP_SALT_ROUND || "5"),
+      otpContent + OTP_PEPPER,
+      parseInt(OTP_PEPPER_ROUND || "5"),
     );
 
     // Generate Email HTML

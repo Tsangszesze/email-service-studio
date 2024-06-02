@@ -67,8 +67,8 @@ This is a customizable microservice template that can be directly deployed to cr
 6. Set the otp variables :
 
    ```
-   OTP_SALT=random_long_string_to_shared_with_valid_client
-   OTP_SALT_ROUND=an_integer
+   OTP_PEPPER=random_long_string_to_shared_with_valid_client
+   OTP_PEPPER_ROUND=an_integer
    ```
 
 7. In `src/config/index.ts`, uncomment codes accordingly to load the environment variables
@@ -105,8 +105,8 @@ This is a customizable microservice template that can be directly deployed to cr
    ```
    CLIENT_LIST=https://website1.com,https://website2.com
    API_KEY_LIST=key_for_website1,key_for_website2
-   OTP_SALT=random_long_string_to_shared_with_valid_client
-   OTP_SALT_ROUND=an_integer
+   OTP_PEPPER=random_long_string_to_shared_with_valid_client
+   OTP_PEPPER_ROUND=an_integer
    ```
 
 <br/>

@@ -1,2 +1,2 @@
-export const OTP_SALT = process.env.OTP_SALT;
-export const OTP_SALT_ROUND = process.env.OTP_SALT_ROUND;
+export const OTP_PEPPER = process.env.OTP_PEPPER;
+export const OTP_PEPPER_ROUND = process.env.OTP_PEPPER_ROUND;

@@ -8,14 +8,9 @@ import { transporter, HOST_EMAIL, CS_EMAIL } from "../config";
 import generateText from "../helpers/email-texts/otp";
 import { ReqBody } from "../types";
 import { OTP_SALT, OTP_SALT_ROUND } from "../config";
-import { Options } from "crypto-random-string";
+import randomstring from "randomstring";
 
 interface OTPRequst extends ReqBody {}
-
-const cryptoRandomString = (arg: Options) =>
-  import("crypto-random-string").then(({ default: encode }) => {
-    return encode(arg);
-  });
 
 const send_otp = async (
   req: Request<Record<string, never>, string, OTPRequst>,
@@ -36,7 +31,10 @@ const send_otp = async (
 
   try {
     // Generate OTP
-    const otpContent = await cryptoRandomString({ length: 6, type: "numeric" });
+    const otpContent = randomstring.generate({
+      charset: "numeric",
+      length: 6,
+    });
 
     // Encode OTP with salt
     const encodedOtp = bcrypt.hashSync(
@@ -68,7 +66,7 @@ const send_otp = async (
     // Config Email Sending
     const mailOptions: Mail.Options = {
       to: email,
-      subject: "One Time Password",
+      subject: "Verification Code",
       text: text,
       html: html,
       bcc: CS_EMAIL,

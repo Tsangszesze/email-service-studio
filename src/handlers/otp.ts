@@ -69,7 +69,6 @@ const send_otp = async (
       subject: "Verification Code",
       text: text,
       html: html,
-      bcc: CS_EMAIL,
       from: {
         name: sender || "Email.Service.Studio",
         address: HOST_EMAIL || "",

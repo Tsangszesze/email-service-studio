@@ -98,7 +98,7 @@ This is a customizable microservice template that can be directly deployed to cr
 3. (Optional) zip the app into `app.zip` if needed :\
    `npm run zip`
 
-4. Deploy to your chosen platform
+4. Deploy the output folder `dist` to your chosen platform
 
 5. Set the environment variables in the platform for production :\
    \*same set of variables in `.env.local` but with values for production

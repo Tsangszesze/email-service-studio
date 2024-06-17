@@ -28,6 +28,7 @@ const send_autoreply = async (
 
   const contactEmail = senderContactEmail || CS_EMAIL;
   if (!contactEmail) {
+    console.log("AutoReply Handler: Contact Email is not configured")
     return res.status(500).send(`Contact Email is not configured`);
   }
 

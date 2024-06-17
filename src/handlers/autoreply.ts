@@ -75,6 +75,7 @@ const send_autoreply = async (
     await transporter.sendMail(mailOptions);
     res.status(200).end();
   } catch (error) {
+    console.log(`AutoReply Handler: Failed to send email to ${email}: ${error}`)
     res.status(500).send(`Failed to send email to ${email}: ${error}`);
   }
 };

@@ -28,5 +28,6 @@ export const validateAPIKey = (
     return res.status(401).send("Invalid API key");
   }
 
+  console.log("Auth Middleware: Passed")
   next();
 };

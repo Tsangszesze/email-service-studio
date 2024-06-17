@@ -18,7 +18,7 @@ export const validateAPIKey = (
   // Get preserved API key
   const secret = CLIENT_AUTH_PAIRS[origin];
   if (!secret) {
-    console.log("Auth Middleware: API key is not configured");
+    console.log(`Auth Middleware: API key is not configured, origin : ${origin}`);
     return res.status(500).send("API key is not configured");
   }
 

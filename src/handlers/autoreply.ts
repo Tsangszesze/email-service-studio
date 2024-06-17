@@ -28,7 +28,7 @@ const send_autoreply = async (
 
   const contactEmail = senderContactEmail || CS_EMAIL;
   if (!contactEmail) {
-    console.log("AutoReply Handler: Contact Email is not configured")
+    console.log("AutoReply Handler: Contact Email is not configured");
     return res.status(500).send(`Contact Email is not configured`);
   }
 
@@ -75,7 +75,9 @@ const send_autoreply = async (
     await transporter.sendMail(mailOptions);
     res.status(200).end();
   } catch (error) {
-    console.log(`AutoReply Handler: Failed to send email to ${email}: ${error}`)
+    console.log(
+      `AutoReply Handler: Failed to send email to ${email}: ${error}`,
+    );
     res.status(500).send(`Failed to send email to ${email}: ${error}`);
   }
 };
